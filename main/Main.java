@@ -1,18 +1,44 @@
 package main;
 
-import exception.*;
+import java.util.HashMap;
 import model.*;
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
 
-        SavingsAccount acc = new SavingsAccount(1, "samala bharat", 1000);
+        HashMap<Integer,Account> map=new HashMap<>();
+
+        Account acc1 = new SavingsAccount(1, "samala bharat", 1000);
+        map.put(1,acc1);
+        Account acc2 =new CurrentAccount(2, "Kalavathi", 100000);
+        map.put(2,acc2);
+
         boolean running = true;
 
         try (Scanner sc = new Scanner(System.in)) {
 
             while (running) {
+
+                System.out.println("Enter the account Number : ");
+                int accountNumber=sc.nextInt();
+               
+                Account acc=map.get(accountNumber);
+
+                if(acc==null)
+                {
+                    System.out.println("Account not found!!");
+                    System.out.println("Do you want to continue? (yes/no)");
+                    String response=sc.next();
+                    if(response=="yes")
+                    {
+                        continue;
+                    }
+                    else{
+                        break;
+                    }
+
+                }
 
                 System.out.println("1. Deposit");
                 System.out.println("2. Withdraw");
@@ -28,14 +54,14 @@ class Main {
                         case 1: // ⚫ case Deposit
                             System.out.print("Enter deposit amount: ");
                             double depositAmount = sc.nextDouble();
-                            acc.deposit(depositAmount);
+                            ((Transactions)acc).deposit(depositAmount);
                             System.out.println("Deposit successful");
                             break; // ⚫ END case 1
 
                         case 2: // ⚫ case Withdraw
                             System.out.print("Enter withdraw amount: ");
                             double withdrawAmount = sc.nextDouble();
-                            acc.withDraw(withdrawAmount);
+                            ((Transactions)acc).withDraw(withdrawAmount);
                             System.out.println("Withdraw successful");
                             break; // ⚫ END case 2
 
@@ -68,7 +94,7 @@ class Main {
         } // try with resources
 
         finally {
-            System.out.println("Application closed!!");
+            System.out.println("Thank you for using the Application visit us once again!!!");
         } // finally
 
     } // main

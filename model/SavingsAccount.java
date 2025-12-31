@@ -16,6 +16,8 @@ public class SavingsAccount extends Account implements Transactions {
         return getBalance()*interest_rate;
     }
 
+
+    //inherited methods from the class account
     @Override 
     public void deposit(double amount){
         if(amount<=0)

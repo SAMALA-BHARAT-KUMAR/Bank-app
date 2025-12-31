@@ -6,6 +6,7 @@ public abstract class Account {
         private String accountHolderName;
         private double balance;
 
+        //default constructer
         public Account(){
             System.out.println("Default constructer called!!!");
         }
@@ -60,6 +61,7 @@ public abstract class Account {
             this.balance = balance;
         }
 
+        //complete account information
         public void display(){
             System.out.println("Account Number :"+accountNumber);
             System.out.println("Account Holder name :"+accountHolderName);
@@ -67,6 +69,7 @@ public abstract class Account {
 
         }
 
+        //display method for the balance
         public void displayBalance(){
             System.out.println("Balance : "+balance);
         }
