@@ -5,20 +5,33 @@ import model.*;
 import java.util.Scanner;
 
 class Main {
+
+    private static Account createAccount(
+            AccountType type,
+            int accountNumber,
+            String name,
+            double balance
+    ) {
+        if (type == AccountType.SAVINGS) {
+            return new SavingsAccount(accountNumber, name, balance);
+        } else {
+            return new CurrentAccount(accountNumber, name, balance);
+        }
+    }
+
     public static void main(String[] args) {
 
         HashMap<Integer,Account> map=new HashMap<>();
 
-        Account acc1 = new SavingsAccount(1, "samala bharat", 1000);
-        map.put(1,acc1);
-        Account acc2 =new CurrentAccount(2, "Kalavathi", 100000);
-        map.put(2,acc2);
+        Account acc1=createAccount(AccountType.SAVINGS, 2, "bharat", 0);
+        map.put(2,acc1);
 
         boolean running = true;
 
         try (Scanner sc = new Scanner(System.in)) {
 
-            while (running) {
+            while (running) 
+            {
 
                 System.out.println("Enter the account Number : ");
                 int accountNumber=sc.nextInt();
